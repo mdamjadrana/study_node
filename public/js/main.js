@@ -6,5 +6,4 @@ if($(".owl-carousel").length>0){
       nav:true,
       items: 1
   })
-
 }

@@ -1,8 +1,9 @@
 const Route = require('express').Router()
 const {getProducts, addProduct, product} = require('../controllers/products')
 const upload = require('../uploadMiddleware')
+const ifLoggedIn = require('../middleware/ifLoggedIn')
 
-Route.get('/add', (req,res, next) => {
+Route.get('/add',ifLoggedIn, (req,res, next) => {
   res.render('pages/products/addProduct', {page: 'Products', menuId: 'Products', newStylesheet: '', newJSlink: ''})
 })
 
