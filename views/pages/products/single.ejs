@@ -1,0 +1,15 @@
+<div class="container mt-5">
+  <% let imagesArray = product.porductimages.split(','); %>
+  <h1>Single Product</h1>
+  <h3><%= product.title %></h3>
+  <p><%= product.category %></p>
+  <p>$<%= product.desc %></p>
+  <p><%= imagesArray[0] %></p>
+  <div class="owl-carousel owl-theme">
+    <% for(var i=0; i<imagesArray.length; i++){%>
+      <div class="item">
+        <image src="<%= imagesArray[i] %>" width="100%">
+      </div>
+    <% }%>
+  </div>
+</div>
