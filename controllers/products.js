@@ -48,3 +48,11 @@ module.exports.product = (req, res) => {
       })
     })
 }
+
+module.exports.searchProduct = async (req, res) =>{
+  const productQuery = req.body.searchporducts;
+  const regex = new RegExp(productQuery);
+  const allProducts = await Product.find({title: regex}) 
+  console.log(productQuery)
+  res.json(allProducts);
+}
