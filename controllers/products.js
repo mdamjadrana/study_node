@@ -50,9 +50,9 @@ module.exports.product = (req, res) => {
 }
 
 module.exports.searchProduct = async (req, res) =>{
-  const productQuery = req.body.searchporducts;
-  const regex = new RegExp(productQuery);
-  const allProducts = await Product.find({title: regex}) 
-  console.log(productQuery)
+  let productQuery = req.body.searchporducts;
+      productQuery = productQuery.toLowerCase();
+      productQuery = new RegExp(productQuery);
+  const allProducts = await Product.find({title: productQuery}) 
   res.json(allProducts);
 }
