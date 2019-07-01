@@ -50,9 +50,16 @@ module.exports.product = (req, res) => {
 }
 
 module.exports.searchProduct = async (req, res) =>{
-  let productQuery = req.body.searchporducts;
-      productQuery = productQuery.toLowerCase();
-      productQuery = new RegExp(productQuery);
-  const allProducts = await Product.find({title: productQuery}) 
+  let allProducts = undefined;
+  let reqTitleData = req.body.searchporducts
+  let reqCategoryData = req.body.searchbycategory
+  console.log(reqTitleData);
+  if(reqTitleData){
+    reqTitleData = reqTitleData.toLowerCase();
+    allProducts = await Product.find({title: new RegExp(reqTitleData)}) 
+  } else if(reqCategoryData){
+    reqCategoryData = reqCategoryData.toLowerCase();
+    allProducts = await Product.find({category: new RegExp(reqCategoryData)}) 
+  }
   res.json(allProducts);
 }
